@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import {config as dotenv} from 'dotenv';
 import AuthRoutes from './routes/auth-routes';
 import TodoRoutes from './routes/todo-routes';
 
@@ -13,6 +14,7 @@ class App {
     this.app = express();
     this.middlewares();
     this.routes();
+    dotenv();
   }
 
   protected middlewares(): void {
