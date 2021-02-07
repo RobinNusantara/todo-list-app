@@ -7,6 +7,9 @@ class TodoRoutes extends BaseRouter {
   routes(): void {
     this.router.get('/list/all', controller.index);
     this.router.post('/insert', validate(TodoSchema), controller.insert);
+    this.router.get('/details/:id', controller.select);
+    this.router.patch('/update/:id', controller.update);
+    this.router.delete('/remove/:id', controller.remove);
   }
 }
 

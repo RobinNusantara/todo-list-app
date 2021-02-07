@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import AuthRoutes from './routes/auth-routes';
 import TodoRoutes from './routes/todo-routes';
 
 class App {
@@ -22,6 +23,7 @@ class App {
   }
 
   protected routes(): void {
+    this.app.use('/api/v1/auth', AuthRoutes);
     this.app.use('/api/v1/todos', TodoRoutes);
   }
 }
