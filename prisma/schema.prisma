@@ -10,8 +10,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model User {
+  id        Int     @id @default(autoincrement())
+  username  String  @unique
+  email     String  @unique
+  password  String
+  todos     Todo[]
+}
+
 model Todo {
   id          Int       @id @default(autoincrement())
+  ownerId     Int
   title       String
   description String
   isComplete  Boolean   @default(false)
@@ -19,4 +28,5 @@ model Todo {
   timeEnd     DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now())
+  owner       User      @relation(fields: [ownerId], references: [id])
 }
