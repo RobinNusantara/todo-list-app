@@ -1,10 +1,13 @@
 import BaseRouter from '../utils/router-base';
-import * as controller from '../controllers/auth-controller';
+import validate from '../middlewares/validate-middleware';
+import SignupSchema from '../validation/signup-validation';
+import SigninSchema from '../validation/signin-validation';
+import AuthController from '../controllers/auth-controller';
 
 class AuthRoutes extends BaseRouter {
   routes(): void {
-    this.router.post('/signup', controller.signup);
-    this.router.post('/signin', controller.signin);
+    this.router.post('/signup', validate(SignupSchema), AuthController.signup);
+    this.router.post('/signin', validate(SigninSchema), AuthController.signin);
   }
 }
 
