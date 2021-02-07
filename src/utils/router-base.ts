@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import Route from './router-interface';
+import Routes from './routes-interface';
 
-abstract class BaseRouter implements Route {
+abstract class BaseRouter implements Routes {
   public router: Router;
 
   constructor() {
