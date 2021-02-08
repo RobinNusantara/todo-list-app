@@ -1,15 +1,15 @@
 import React, {Fragment} from 'react';
 import LayoutFactory from '../../layout/signin-signup-layout';
-import SignInForm from '../../components/signin-form';
+import SignUpForm from '../../components/signup-form';
 
-function SignInPage() {
+function SignUpPage() {
   return (
     <Fragment>
       <LayoutFactory>
-        <SignInForm/>
+        <SignUpForm/>
       </LayoutFactory>
     </Fragment>
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

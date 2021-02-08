@@ -4,12 +4,13 @@ import TextField from '../tw-text-field';
 import {Primary as Button} from '../tw-button';
 
 interface Values {
+  username: string;
   email: string;
   password: string;
 }
 
-const SignInForm: React.FC<{}> = () => {
-  const initialValues: Values = {email: '', password: ''};
+const SignUpForm: React.FC<{}> = () => {
+  const initialValues: Values = {username: '', email: '', password: ''};
 
   return (
     <Fragment>
@@ -19,6 +20,12 @@ const SignInForm: React.FC<{}> = () => {
           console.log(values);
         }}>{({handleChange}) => (
           <Form>
+            <TextField
+              type="text"
+              label="Username"
+              className="w-full"
+              placeholder="Username"
+              handleChange={handleChange}/>
             <TextField
               type="email"
               label="Email"
@@ -31,7 +38,7 @@ const SignInForm: React.FC<{}> = () => {
               className="my-3 w-full"
               placeholder="Password"
               handleChange={handleChange}/>
-            <Button type="submit" className='py-3 w-full'>Sign In</Button>
+            <Button type="submit" className="py-3 w-full">Sign Up</Button>
           </Form>
         )}
       </Formik>
@@ -39,4 +46,4 @@ const SignInForm: React.FC<{}> = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

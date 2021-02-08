@@ -17,7 +17,7 @@ const TextField: React.FC<Props> = ({...props}) => {
         id={label.toLocaleLowerCase()}
         type={type}
         autoFocus
-        className={`rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 ${className && className}`}
+        className={`rounded-md px-4 py-3 mt-3 focus:outline-none bg-gray-100 ${className && className}`}
         placeholder={placeholder}
         onChange={handleChange}/>
     </div>
