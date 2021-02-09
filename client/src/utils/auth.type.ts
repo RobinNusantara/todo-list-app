@@ -15,5 +15,4 @@ export const AuthActionType = {
   SIGN_IN_FAILED: 'SIGN_IN_FAILED',
 };
 
-
-export type DispatchType = (args: AuthAction) => AuthAction;
+export type DispatchAction = (args: AuthAction) => AuthAction;

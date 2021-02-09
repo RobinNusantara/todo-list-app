@@ -1,6 +1,6 @@
-import {AuthState, AuthAction, AuthActionType, DispatchType} from '../utils/auth.type';
-import {Values as SignInValue} from '../components/signin-form';
-import axios from 'axios';
+import {AuthState, AuthAction, AuthActionType, DispatchAction} from '../utils/auth.type';
+import {Values as LoginValues} from '../components/signin-form';
+import client from '../api/api';
 
 function signInStart() {
   const action: AuthAction = {
@@ -25,20 +25,20 @@ function signInFailed(error: AuthState) {
   return action;
 };
 
-export function signIn(values: SignInValue) {
-  return async (dispatch: DispatchType) => {
+export function signIn(values: LoginValues) {
+  return async (dispatch: DispatchAction) => {
     try {
-      dispatch(signInStart());
-      const baseUrl: string = 'http://localhost:4000/api/v1/auth/signin';
-      const data: SignInValue = {
+      const data = {
         email: values.email,
         password: values.password,
       };
-      const response = await axios.post(baseUrl, data);
+
+      dispatch(signInStart());
+      const response = await client.post('/auth/signin', data);
       const {token} = response.data;
       dispatch(signInSuccess(token));
     } catch (error) {
-      dispatch(signInFailed(error.response.data));
+      dispatch(signInFailed(error.response.data.message));
     }
   };
 }
