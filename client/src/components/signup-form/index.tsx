@@ -3,7 +3,7 @@ import {Formik, Form} from 'formik';
 import TextField from '../tw-text-field';
 import {Primary as Button} from '../tw-button';
 
-interface Values {
+export interface Values {
   username: string;
   email: string;
   password: string;

@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {AuthState} from '../../utils/auth.type';
+import {authErrorSelector, authLoadingSelector} from '../../utils/auth.selectors';
 import {signIn} from '../../actions/auth.action';
 import {Formik, Form} from 'formik';
 import TextField from '../tw-text-field';
+import Alert from '../tw-alert';
 import {Primary as Button} from '../tw-button';
 
 export interface Values {
@@ -13,11 +14,13 @@ export interface Values {
 
 const SignInForm: React.FC<{}> = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: AuthState) => state.isLoading);
+  const isLoading: boolean = useSelector(authLoadingSelector);
+  const error: string = useSelector(authErrorSelector);
   const initialValues: Values = {email: '', password: ''};
 
   return (
     <Fragment>
+      {error && <Alert color="red">{error}</Alert>}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -39,7 +42,7 @@ const SignInForm: React.FC<{}> = () => {
             <Button
               type="submit"
               disabled={isLoading}
-              className='py-3 w-full'>Sign In</Button>
+              className='py-3 w-full'>{isLoading ? 'Loading...' : 'Sign In'}</Button>
           </Form>
         )}
       </Formik>

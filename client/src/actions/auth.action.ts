@@ -1,29 +1,30 @@
 import {AuthState, AuthAction, AuthActionType, DispatchAction} from '../utils/auth.type';
 import {Values as LoginValues} from '../components/signin-form';
+import {Values as RegisValues} from '../components/signup-form';
 import client from '../api/api';
 
-function signInStart() {
+function signInStart(): AuthAction {
   const action: AuthAction = {
     type: AuthActionType.SIGN_IN_START,
   };
   return action;
 }
 
-function signInSuccess(user: AuthState) {
+function signInSuccess(user: AuthState): AuthAction {
   const action: AuthAction = {
-    type: AuthActionType.SIGN_IN_START,
+    type: AuthActionType.SIGN_IN_SUCCESS,
     payload: user,
   };
   return action;
 }
 
-function signInFailed(error: AuthState) {
+function signInFailed(error: AuthState): AuthAction {
   const action: AuthAction = {
     type: AuthActionType.SIGN_IN_FAILED,
     payload: error,
   };
   return action;
-};
+}
 
 export function signIn(values: LoginValues) {
   return async (dispatch: DispatchAction) => {
@@ -38,7 +39,18 @@ export function signIn(values: LoginValues) {
       const {token} = response.data;
       dispatch(signInSuccess(token));
     } catch (error) {
-      dispatch(signInFailed(error.response.data.message));
+      const {message} = error.response.data;
+      dispatch(signInFailed(message));
+    }
+  };
+}
+
+export function signUp(values: RegisValues) {
+  return async (dispatch: DispatchAction) => {
+    try {
+
+    } catch (error) {
+
     }
   };
 }

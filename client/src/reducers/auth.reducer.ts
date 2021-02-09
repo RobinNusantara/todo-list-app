@@ -17,13 +17,14 @@ const authReducer = (state = initialState, action: AuthAction) => {
       return {
         ...state,
         isLoading: false,
-        user: action.payload?.user,
+        user: action.payload,
+        error: '',
       };
     case AuthActionType.SIGN_IN_FAILED:
       return {
         ...state,
         isLoading: false,
-        error: action.payload?.error,
+        error: action.payload,
       };
     default:
       return state;
